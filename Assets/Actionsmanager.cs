@@ -8,9 +8,11 @@ public class Actionsmanager : MonoBehaviour
     { 
 
         //custom action
-        public static Action RollyPolyOly;
+        public static BallInHoop;
+        // spacebar = basket in hoop
+        // win text after 
 
-
+        ActionsMnagaer.
 
         public void OnEnable;
         {
