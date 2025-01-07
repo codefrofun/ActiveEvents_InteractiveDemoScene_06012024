@@ -1,20 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
+using static Actionsmanager;
 
 public class UImanager : MonoBehaviour
 {
-    public Text winText;
+    public TextMeshProUGUI winText;
 
     void OnEnable()
     {
-        // Move Basketball and show the win text
+        // Subscribe to the basket scored event
+        ActionsManager.OnBasketScoredEvent += ShowWinText;
     }
 
     void OnDisable()
     {
-        // Don't move Don't show wintext
+        // Unsubscribe from the event to avoid memory issues
+        ActionsManager.OnBasketScoredEvent -= ShowWinText;
     }
 
     private void ShowWinText()

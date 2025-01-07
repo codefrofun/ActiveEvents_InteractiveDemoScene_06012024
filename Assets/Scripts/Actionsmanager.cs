@@ -5,7 +5,7 @@ public class Actionsmanager : MonoBehaviour
 {
     public static class ActionsManager
     {
-        //custom action
+        // This Action is triggered when the basketball goes through the basket
         public static Action OnBasketScoredEvent;
     }
 }
