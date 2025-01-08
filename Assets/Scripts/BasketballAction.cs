@@ -5,7 +5,7 @@ using static Actionsmanager;
 
 public class BasketballAction : MonoBehaviour
 {
-    public float throwBall = 10f; // Force ball to throw
+    public float throwBall = 12f; // Force of basketball, changes in inspector
     public Rigidbody rb;
 
     void Start()
@@ -24,13 +24,17 @@ public class BasketballAction : MonoBehaviour
 
     void ThrowBall()
     {
-        // add force... Vector3
-        rb.AddForce(Vector3.up * throwBall, ForceMode.Impulse);
+        // Throw forward
+        Vector3 forwardForce = transform.forward * throwBall;
+        // Throw upward
+        Vector3 upwardForce = Vector3.up * throwBall;
+
+        rb.AddForce(forwardForce + upwardForce, ForceMode.Impulse); // Adding forces for ball to move forward to net, and up to sky
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Basket"))
+        if (other.CompareTag("Basket"))
         {
             ActionsManager.OnBasketScoredEvent?.Invoke();
         }

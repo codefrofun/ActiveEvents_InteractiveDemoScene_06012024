@@ -8,6 +8,7 @@ public class UImanager : MonoBehaviour
 {
     public TextMeshProUGUI winText;
 
+
     void OnEnable()
     {
         // Subscribe to the basket scored event
@@ -23,5 +24,6 @@ public class UImanager : MonoBehaviour
     private void ShowWinText()
     {
         winText.text = "You Win!";
+        Invoke("You Win!", 6.0f);
     }
 }
