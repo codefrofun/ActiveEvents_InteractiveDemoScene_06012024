@@ -10,7 +10,7 @@ public class BasketballAction : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>(); // Giving ball ability to move
     }
 
     // Throw ball when you press space
@@ -18,7 +18,7 @@ public class BasketballAction : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            ThrowBall();
+            ThrowBall(); // Calling  method that moves the ball
         }
     }
 
@@ -29,14 +29,14 @@ public class BasketballAction : MonoBehaviour
         // Throw upward
         Vector3 upwardForce = Vector3.up * throwBall;
 
-        rb.AddForce(forwardForce + upwardForce, ForceMode.Impulse); // Adding forces for ball to move forward to net, and up to sky
+        rb.AddForce(forwardForce + upwardForce, ForceMode.Impulse); // Adding forces for ball to move towards the net
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Basket"))
         {
-            ActionsManager.OnBasketScoredEvent?.Invoke();
+            ActionsManager.OnBasketScoredEvent?.Invoke(); // Calling / invoking the action manager action
         }
     }
 }

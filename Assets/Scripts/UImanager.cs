@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using static Actionsmanager;
+using UnityEditor.PackageManager.Requests;
 
 public class UImanager : MonoBehaviour
 {
     public TextMeshProUGUI winText;
 
+    public void Start()
+    {
+        winText.text = " "; // Making sure the the text is not visible at the start
+    }
 
     void OnEnable()
     {
@@ -17,13 +22,19 @@ public class UImanager : MonoBehaviour
 
     void OnDisable()
     {
-        // Unsubscribe from the event to avoid memory issues
+        // Unsubscribe from the event
         ActionsManager.OnBasketScoredEvent -= ShowWinText;
     }
 
     private void ShowWinText()
     {
-        winText.text = "You Win!";
-        Invoke("You Win!", 6.0f);
+        winText.text = "You Win!"; // Printing Text
+        StartCoroutine("DisableText"); // Calling teh coroutine
+    }
+
+    IEnumerator DisableText()
+    {
+        yield return new WaitForSeconds(5); // Adding seconds until text disappears
+        winText.text = " "; // Removing visible text
     }
 }
